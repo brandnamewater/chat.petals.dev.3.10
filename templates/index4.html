@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" class="js-site-favicon" type="image/png" href="./static/hyper-logo.svg">
+  <title>hypertensor ai &ndash; Decentralized network for running large language models</title>
+  <link href="./static/style4.css" rel="stylesheet">
+</head>
+
+<body>
+  <main class="bg-[#131316]">
+    <div class="flex flex-col bg-cover h-screen">
+      <header class="p-6 bg-white/5 border-b border-[#363739]">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex justify-start items-center">
+            <p class="inline-flex items-center space-x-3">
+              <div class="flex flex-row items-center gap-3">
+                <div class="h-7 w-7">
+                  <a target="_blank" href="https://hypertensor.app"><img src="./static/hyper-logo.svg" class=""></a>
+                </div>
+                <!-- <div class="h-36">
+                  <a target="_blank" href="https://hypertensor.app"><img src="./static/hyper-text.svg" class=""></a>
+                </div> -->
+              </div>
+            </p>
+          </div>
+        </div>
+      </header>
+      <section class="h-full">
+        <div class="flex flex-col justify-between h-full">
+          <div id="scroller" class="flex-1 overflow-y-scroll no-scrollbar p-6 m ax-h-[200px] h-[calc(100vh-96.67px-77.67px)] max-h-[calc(100vh-96.67px-77.67px)]">
+            <div class="max-w-4xl mx-auto">
+              <div class="">
+                <!-- message list -->
+                <div class="dialogue flex flex-col gap-8">
+                  <!-- message -->
+                  <!-- <div class="flex flex-col relative space-x-1 space-y-1 text-right rounded p-3 max-w-[80%] md:min-w-[290px] bg-[#4a9c6d]">
+                    <div class="flex relative space-x-1 flex-row space-x-reverse">
+                      <span class="inline-flex  space-x-2 items-start p-3 text-white">
+                        <span class="ai-replica max-w-sm"><span class="text">HyperGPT: Hi! How can I help
+                            you?</span></span>
+                      </span>
+                    </div>
+                    <p class="text-xs text-white/50" id="starting-date">{{date}}</p>
+                  </div> -->
+                  <div class="flex flex-row justify-start">
+                    <div class="flex flex-col relative space-x-1 space-y-1 text-left bg-[#4a9c6d] rounded max-w-[80%] md:min-w-[290px] p-3">
+                      <div class="flex relative space-x-1 flex-row space-x-reverse">
+                        <span class="inline-flex space-x-7 items-center text-white b g-[#4a9c6d]">
+                          <span class="ai-replica max-w-sm">
+                            <span class="text">
+                              HyperGPT: Hi! How can I help you?
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                      <div class="flex flex-col">
+                        <div class="flex flex-row justify-between">
+                          <div class="text-xs text-white/50" id="starting-date">{{date}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <span class="human-replica hidden">
+                    <textarea class="form-control text-white hidden" id="exampleTextarea" rows="2"></textarea>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="max-h-[96.67px]">
+            <div class="p-6 border-t border-[#363739]">
+              <div class="max-w-4xl mx-auto">
+                <div class="flex items-center space-x-3">
+                  <input autoFocus spellcheck="false" autocomplete="off" name="message" placeholder="Write a message..."
+                    id="human-replica-input"
+                    class="flex-1 h-12 px-3 rounded bg-[#222226] border border-[#222226] focus:border-[#222226] focus:outline-none text-white placeholder-white" />
+                  <button id="human-replica-button"
+                    class="bg-[#222226] rounded h-12 font-medium text-white w-24 text-lg border border-transparent hover:bg-[#363739] transition">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="./static/autosize.min.js"></script>
+
+  <script>
+    const modelConfigs = {{ model_config_json| safe }};
+    const defaultModel = {{ default_model.backend.key| tojson | safe }};
+    const date = new Date().toLocaleString()
+    const el = document.getElementById("starting-date")
+    el.innerHTML = date
+  </script>
+  <script src="./static/chat4.js?v=18"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LENBCEYH86"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-LENBCEYH86');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+# petals @ git+https://github.com/brandnamewater/petals
+# git+https://github.com/brandnamewater/petals
+petals
+Flask
+flask-sock
+flask-cors
+gunicorn[gthread]

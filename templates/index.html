@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" class="js-site-favicon" type="image/png" href="./static/belm-logo-white.svg">
+    <title>hypertensor ai &ndash; Decentralized network for running large language models</title>
+    <link href="./static/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main>
+  <div class="position-relative overflow-hidden px-5 pt-1 m-md-4 text-center">
+    <div class="col-lg-6 col-md-8 p-md-3 mx-auto my-3" style="max-width: 700px;">
+      <div class="mb-4">
+        <div class="d-md-inline-block pe-md-4">
+          <a target="_blank" href="https://hypertensor.app"><img src="./static/belm-logo-white.svg" height="100" class="ro t-image"></a>
+        </div>
+        <h1 class="display-4 text-white fw-bold d-md-inline-block justify-content-center" style="font-size: 40pt; vertical-align: middle;">
+          Hyper
+          <span style="font-size: 25pt; color: #e5e5e5;">Chat</span>
+        </h1>
+      </div>
+      <!-- <div class="welcome mb-4">
+        <div>
+          <b>Welcome!</b> This is a demo app running
+          <a target="_blank" class="model-name" href="{{ default_model.frontend.model_card }}">{{ default_model.frontend.name }}</a>
+          over the <a target="_blank" href="https://petals.dev">Hyper</a> network.
+          Please follow the model's
+          <a target="_blank" class="license-link" href="{{ default_model.frontend.license }}">terms of use</a>
+          and do not enter sensitive data.
+          The chat history is recorded.
+        </div>
+        <form id="settings">
+          <div class="mt-2">
+            <label class="group-label">Family:</label>
+            <div class="btn-group family-selector" role="group">
+              {% for family in model_families.keys() %}
+              {% set family_id = family.lower().replace(" ", "-") %}
+              <input type="radio" class="btn-check" name="family" value="{{ family_id }}" id="family-{{ family_id }}"
+                  {% if loop.first %}checked{% endif %}>
+              <label class="btn btn-outline-primary" for="family-{{ family_id }}">{{ family }}</label>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="mt-2">
+            <label class="group-label">Model:</label>
+            {% for family, family_models in model_families.items() %}
+            {% set family_id = family.lower().replace(" ", "-") %}
+            {% set family_loop = loop %}
+            <div class="model-selector btn-group" role="group" data-family="{{ family_id }}"
+                {% if not loop.first %}style="display: none;"{% endif %}>
+              {% for model in family_models %}
+              {% set model_id = model.backend.key.lower().replace("/", "-") %}
+              <input type="radio" class="btn-check" name="model" value="{{ model.backend.key }}" id="{{ model_id }}"
+                  {% if family_loop.first and loop.first %}checked{% endif %}>
+              <label class="btn btn-outline-primary" for="{{ model_id }}">{{ model.frontend.name }}</label>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </form>
+      </div> -->
+      <div class="dialogue" style="margin-top: 4rem;">
+        <!-- <p class="human-replica">A chat between a curious human and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions.</p> -->
+        <p class="ai-replica"><span class="text">HyperGPT: Hi! How can I help you?</span></p>
+        <p class="human-replica"><textarea class="form-control" id="exampleTextarea" rows="2">Message: </textarea></p>
+      </div>
+      <p class="error-box" style="display: none;">
+        Request failed. <a class="retry-link" href="#">Retry</a><br>
+        <span class="error-message"></span>
+        <span class="out-of-capacity"><br>
+          <b>We're out of capacity</b> &mdash; attention caches of existing servers are full.
+          Please come back later, or
+          <a target="_blank" href="#">connect your GPU (coming soon)</a>
+          to increase Hypertensors's capacity now!
+        </span>
+      </p>
+
+      <p class="acknowledgements mt-5 pt-3 text-muted">
+        <b>Shift+Enter</b> inserts newlines.<br>
+        See source code and API docs on <a target="_blank" href="https://github.com/belm-ai/chat.belm.ai">GitHub</a>.<br>
+        We do not provide API for Falcon-180B due to license restrictions.
+      </p>
+    </div>
+  </div>
+</main>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="./static/autosize.min.js"></script>
+
+    <script>
+      const modelConfigs = {{ model_config_json|safe }};
+      const defaultModel = {{ default_model.backend.key|tojson|safe }};
+    </script>
+    <script src="./static/chat.js?v=18"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LENBCEYH86"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LENBCEYH86');
+    </script>
+  </body>
+</html>
